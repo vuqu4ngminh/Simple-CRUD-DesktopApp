@@ -28,12 +28,14 @@ namespace CRUD_User
                 try
                 {
                     string response = await client.GetStringAsync(apiUrl);
-
-                    // Chuyển đổi JSON thành mảng đối tượng (UserData[])
                     UserData[] userDataArray = JsonConvert.DeserializeObject<UserData[]>(response);
 
-                    // Gán mảng đối tượng vào DataSource của DataGridView
-                    dataGridView1.DataSource = userDataArray;
+                    dataGridView1.Rows.Clear();
+                    foreach (var userData in userDataArray)
+                    {
+                        dataGridView1.Rows.Add(userData._id, userData.Name, userData.Age);
+                    }
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
                 catch (Exception ex)
                 {
