@@ -18,7 +18,10 @@ namespace CRUD_User
         {
             InitializeComponent();
             LoadData();
+            button3.Enabled = false;
+            button2.Enabled = false;
         }
+        private string userId;
         private async void LoadData()
         {
             string apiUrl = "https://simple-crud-x6b5.onrender.com/api/v1";
@@ -39,7 +42,7 @@ namespace CRUD_User
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -55,7 +58,28 @@ namespace CRUD_User
             addUser.Show();
             this.Hide();
         }
-
         private void label1_Click(object sender, EventArgs e) => Application.Exit();
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            UpdateUser updateUser = new UpdateUser(userId);
+            updateUser.Show();
+            this.Hide();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
+            {
+                userId = dataGridView1.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                button3.Enabled = true;
+                button2.Enabled = true;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -60,6 +60,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Thêm";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
             // 
@@ -67,9 +68,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(184, 153);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 31);
+            this.label1.Size = new System.Drawing.Size(61, 31);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Name";
+            this.label1.Text = "Tên";
             // 
             // label2
             // 
@@ -77,9 +78,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(184, 221);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 31);
+            this.label2.Size = new System.Drawing.Size(67, 31);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Age";
+            this.label2.Text = "Tuổi";
             // 
             // textBox1
             // 
@@ -115,9 +116,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(58, 45);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(279, 37);
+            this.label4.Size = new System.Drawing.Size(268, 37);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Thêm Người Dùng";
+            this.label4.Text = "Thêm người dùng";
             // 
             // AddUser
             // 
