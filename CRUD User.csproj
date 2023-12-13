@@ -69,6 +69,7 @@
     <Compile Include="UpdateUser.Designer.cs">
       <DependentUpon>UpdateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
     <EmbeddedResource Include="AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
     </EmbeddedResource>
