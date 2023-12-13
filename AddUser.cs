@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CRUD_User
@@ -22,7 +16,7 @@ namespace CRUD_User
         {
             MainForm form1 = new MainForm();
             form1.Show();
-            this.Hide();
+            this.Close();
         }
 
         private async void button2_Click(object sender, EventArgs e)
@@ -46,7 +40,9 @@ namespace CRUD_User
 
                         if (response.IsSuccessStatusCode)
                         {
-                            MessageBox.Show("Lưu thành công", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            textBox1.Text = "";
+                            textBox2.Text = "";
+                            MessageBox.Show("Thêm người dùng thành công", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     catch (Exception ex)
@@ -54,9 +50,6 @@ namespace CRUD_User
                         MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-            } else
-            {
-                MessageBox.Show("Không được để trống thông tin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

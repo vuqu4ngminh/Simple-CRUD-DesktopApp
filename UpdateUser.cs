@@ -45,7 +45,7 @@ namespace CRUD_User
         {
             MainForm form1 = new MainForm();
             form1.Show();
-            this.Hide();
+            this.Close();
         }
 
         private async void button2_Click(object sender, EventArgs e)
@@ -66,7 +66,10 @@ namespace CRUD_User
 
                         if (response.IsSuccessStatusCode)
                         {
-                            MessageBox.Show("Cập nhật thành công", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MainForm form1 = new MainForm();
+                            form1.Show();
+                            this.Close();
+                            MessageBox.Show("Cập nhật người dùng thành công", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     catch (Exception ex)
@@ -74,11 +77,7 @@ namespace CRUD_User
                         MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-            } else
-            {
-                MessageBox.Show("Không được để trống thông tin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
     }
 }

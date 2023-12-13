@@ -1,13 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CRUD_User
@@ -22,6 +15,8 @@ namespace CRUD_User
             button2.Enabled = false;
         }
         private string userId;
+        private string username;
+        private string userage;
         private async void LoadData()
         {
             string apiUrl = "https://simple-crud-x6b5.onrender.com/api/v1";
@@ -72,6 +67,8 @@ namespace CRUD_User
             if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
             {
                 userId = dataGridView1.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                username = dataGridView1.Rows[e.RowIndex].Cells["name"].Value.ToString();
+                userage = dataGridView1.Rows[e.RowIndex].Cells["age"].Value.ToString();
                 button3.Enabled = true;
                 button2.Enabled = true;
             }
@@ -79,7 +76,9 @@ namespace CRUD_User
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            DeleteUser deleteUser = new DeleteUser(userId,username,userage);
+            deleteUser.Show();
+            this.Hide();
         }
     }
 }
