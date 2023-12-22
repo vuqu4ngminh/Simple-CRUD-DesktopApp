@@ -29,16 +29,45 @@ namespace CRUD_User
                     UserData[] userDataArray = JsonConvert.DeserializeObject<UserData[]>(response);
 
                     dataGridView1.Rows.Clear();
+                    int order = 1;
+
                     foreach (var userData in userDataArray)
                     {
-                        dataGridView1.Rows.Add(userData._id, userData.Name, userData.Age);
+                        dataGridView1.Rows.Add(order, userData._id, userData.Name, userData.Age);
+                        order++;
                     }
+
+                    // Chắc chắn rằng cột số thứ tự đã được thêm vào DataGridView
+                    if (dataGridView1.Columns["index"] == null)
+                    {
+                        DataGridViewTextBoxColumn orderColumn = new DataGridViewTextBoxColumn
+                        {
+                            Name = "index",
+                            HeaderText = "STT",
+                            ReadOnly = true,
+                            AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                            DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                        };
+
+                        dataGridView1.Columns.Insert(0, orderColumn);
+                    }
+
+                    // Gọi hàm để cập nhật số thứ tự
+                    UpdateOrderColumn();
+
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+        private void UpdateOrderColumn()
+        {
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                dataGridView1.Rows[i].Cells["index"].Value = (i + 1).ToString();
             }
         }
         public class UserData
