@@ -15,11 +15,9 @@ namespace CRUD_User
             button2.Enabled = false;
         }
         private string userId;
-        private string username;
-        private string userage;
         private async void LoadData()
         {
-            string apiUrl = "https://simple-crud-x6b5.onrender.com/api/v1";
+            string apiUrl = "http://localhost:8181/api/v1/users/";
 
             using (HttpClient client = new HttpClient())
             {
@@ -29,31 +27,11 @@ namespace CRUD_User
                     UserData[] userDataArray = JsonConvert.DeserializeObject<UserData[]>(response);
 
                     dataGridView1.Rows.Clear();
-                    int order = 1;
 
                     foreach (var userData in userDataArray)
                     {
-                        dataGridView1.Rows.Add(order, userData._id, userData.Name, userData.Age);
-                        order++;
+                        dataGridView1.Rows.Add(userData._id, userData.Name, userData.Email, userData.Phone, userData.Address, userData.Role);
                     }
-
-                    // Chắc chắn rằng cột số thứ tự đã được thêm vào DataGridView
-                    if (dataGridView1.Columns["index"] == null)
-                    {
-                        DataGridViewTextBoxColumn orderColumn = new DataGridViewTextBoxColumn
-                        {
-                            Name = "index",
-                            HeaderText = "STT",
-                            ReadOnly = true,
-                            AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                            DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
-                        };
-
-                        dataGridView1.Columns.Insert(0, orderColumn);
-                    }
-
-                    // Gọi hàm để cập nhật số thứ tự
-                    UpdateOrderColumn();
 
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
@@ -63,18 +41,15 @@ namespace CRUD_User
                 }
             }
         }
-        private void UpdateOrderColumn()
-        {
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-                dataGridView1.Rows[i].Cells["index"].Value = (i + 1).ToString();
-            }
-        }
+
         public class UserData
         {
             public string _id { get; set; }
             public string Name { get; set; }
-            public int Age { get; set; }
+            public string Email { get; set; }
+            public string Address { get; set; }
+            public string Phone { get; set; }
+            public string Role { get; set; }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -96,8 +71,6 @@ namespace CRUD_User
             if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
             {
                 userId = dataGridView1.Rows[e.RowIndex].Cells["id"].Value.ToString();
-                username = dataGridView1.Rows[e.RowIndex].Cells["name"].Value.ToString();
-                userage = dataGridView1.Rows[e.RowIndex].Cells["age"].Value.ToString();
                 button3.Enabled = true;
                 button2.Enabled = true;
             }
@@ -105,14 +78,9 @@ namespace CRUD_User
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DeleteUser deleteUser = new DeleteUser(userId,username,userage);
+            /*DeleteUser deleteUser = new DeleteUser(userId,username,userage);
             deleteUser.Show();
-            this.Hide();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            this.Refresh();
+            this.Hide();*/
         }
     }
 }
