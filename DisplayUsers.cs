@@ -82,5 +82,12 @@ namespace CRUD_User
             deleteUser.Show();
             this.Hide();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Menu form = new Menu();
+            form.Show();
+            this.Hide();
+        }
     }
 }

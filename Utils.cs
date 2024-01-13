@@ -60,6 +60,55 @@ namespace CRUD_User
             }
         }
 
+        // check product data value
+        public static bool checkProductData(string _name, string _description, string _price, string _imageUrl, string _status)
+        {
+            if (string.IsNullOrEmpty(_name))
+            {
+                MessageBox.Show("Không được để trống tên sản phẩm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(_description))
+            {
+                MessageBox.Show("Không được để trống mô tả", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(_imageUrl))
+            {
+                MessageBox.Show("Không được để trống đường dẫn ảnh", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(_status))
+            {
+                MessageBox.Show("Không được để trống tình trạng", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(_price))
+            {
+                MessageBox.Show("Không được để trống giá", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            } else
+            {
+                if(int.TryParse(_price, out int result))
+                {
+                    if(result <= 0)
+                    {
+                        MessageBox.Show("Giá phải lớn hơn 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Giá phải là một số", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+        }
+
         // hash password
         public static string hashPassword(string input)
         {
