@@ -14,7 +14,10 @@ namespace CRUD_User
             [JsonProperty("_id")]
             public string Id {  get; set; }
             public string Name { get; set; }
-            public string Age { get; set; }
+            public string Email { get; set; }
+            public string Address { get; set; }
+            public string Phone { get; set; }
+            public string Role { get; set; }
         }
         public UpdateUser(string _userId)
         {
@@ -25,7 +28,7 @@ namespace CRUD_User
 
         private async void LoadData()
         {
-            string apiUrl = "https://simple-crud-x6b5.onrender.com/api/v1/" + userId;
+            string apiUrl = "http://localhost:8181/api/v1/users/" + userId;
             using (HttpClient client = new HttpClient())
             {
                 try
@@ -33,7 +36,10 @@ namespace CRUD_User
                     string response = await client.GetStringAsync(apiUrl);
                     User user = JsonConvert.DeserializeObject<User>(response);
                     textBox1.Text = user.Name;
-                    textBox2.Text = user.Age;
+                    textBox2.Text = user.Email;
+                    textBox3.Text = user.Phone;
+                    textBox4.Text = user.Address;
+                    comboBox1.Text = user.Role;
                 }
                 catch (Exception ex)
                 {
@@ -43,7 +49,7 @@ namespace CRUD_User
         }
         private void label3_Click(object sender, EventArgs e)
         {
-            MainForm form1 = new MainForm();
+            DisplayUsers form1 = new DisplayUsers();
             form1.Show();
             this.Close();
         }
@@ -51,22 +57,25 @@ namespace CRUD_User
         private async void button2_Click(object sender, EventArgs e)
         {
             string name = textBox1.Text;
-            string age = textBox2.Text;
-            if(Utils.checkData(name, age) == true)
+            string email = textBox2.Text;
+            string phone = textBox3.Text;
+            string address = textBox4.Text;
+            string role = comboBox1.Text;
+            if (Utils.checkUserData(name, email, phone, address, role) == true)
             {
                 using (HttpClient client = new HttpClient())
                 {
                     try
                     {
-                        string apiUrl = "https://simple-crud-x6b5.onrender.com/api/v1/update";
-                        string userDataJson = $"{{\"id\":\"{userId}\",\"name\":\"{name}\",\"age\":{age}}}";
+                        string apiUrl = "http://localhost:8181/api/v1/users/update";
+                        string userDataJson = $"{{\"id\":\"{userId}\",\"name\":\"{name}\",\"email\":\"{email}\",\"phone\":\"{phone}\",\"address\":\"{address}\",\"role\":\"{role}\"}}";
 
                         StringContent content = new StringContent(userDataJson, Encoding.UTF8, "application/json");
                         HttpResponseMessage response = await client.PostAsync(apiUrl, content);
 
                         if (response.IsSuccessStatusCode)
                         {
-                            MainForm form1 = new MainForm();
+                            DisplayUsers form1 = new DisplayUsers();
                             form1.Show();
                             this.Close();
                             MessageBox.Show("Cập nhật người dùng thành công", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);

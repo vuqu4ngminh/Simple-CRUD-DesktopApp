@@ -1,6 +1,6 @@
 ﻿namespace CRUD_User
 {
-    partial class MainForm
+    partial class DisplayUsers
     {
         /// <summary>
         /// Required designer variable.

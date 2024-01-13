@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace CRUD_User
 {
-    public partial class MainForm : Form
+    public partial class DisplayUsers : Form
     {
-        public MainForm()
+        public DisplayUsers()
         {
             InitializeComponent();
             LoadData();
@@ -78,9 +78,9 @@ namespace CRUD_User
 
         private void button2_Click(object sender, EventArgs e)
         {
-            /*DeleteUser deleteUser = new DeleteUser(userId,username,userage);
+            DeleteUser deleteUser = new DeleteUser(userId);
             deleteUser.Show();
-            this.Hide();*/
+            this.Hide();
         }
     }
 }
