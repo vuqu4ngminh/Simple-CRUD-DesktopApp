@@ -4,35 +4,41 @@ using System.Windows.Forms;
 
 namespace CRUD_User
 {
-    public partial class DeleteUser : Form
+    public partial class DeleteProduct : Form
     {
-        private string userId;
-
-        public DeleteUser(string _userId)
+        private int productId;
+        public DeleteProduct(int _id)
         {
             InitializeComponent();
-            userId = _userId;
+            productId = _id;
             LoadData();
         }
         private void LoadData()
         {
-            label2.Text += $" {userId}";
+            label2.Text += $" {productId}";
         }
+        private void label3_Click(object sender, EventArgs e)
+        {
+            DisplayProducts form = new DisplayProducts();
+            form.Show();
+            this.Hide();
+        }
+
         private async void button1_Click(object sender, EventArgs e)
         {
             using (HttpClient client = new HttpClient())
             {
-                string apiUrl = "http://localhost:8181/api/v1/users/delete/" + userId;
+                string apiUrl = "http://localhost:9595/api/v1/product/delete/" + productId;
                 try
                 {
                     HttpResponseMessage response = await client.PostAsync(apiUrl, null);
 
                     if (response.IsSuccessStatusCode)
                     {
-                        DisplayUsers form1 = new DisplayUsers();
-                        form1.Show();
-                        this.Close();
-                        MessageBox.Show("Xóa người dùng thành công", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DisplayProducts form = new DisplayProducts();
+                        form.Show();
+                        this.Hide();
+                        MessageBox.Show("Xóa sản phẩm thành công", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (Exception ex)
@@ -41,16 +47,8 @@ namespace CRUD_User
                     DisplayUsers form1 = new DisplayUsers();
                     form1.Show();
                     this.Close();
-                    
                 }
             }
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-            DisplayUsers form = new DisplayUsers();
-            form.Show();
-            this.Close();
         }
     }
 }

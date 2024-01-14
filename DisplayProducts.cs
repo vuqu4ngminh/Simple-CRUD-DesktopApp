@@ -69,7 +69,9 @@ namespace CRUD_User
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            DeleteProduct form = new DeleteProduct(productId);
+            form.Show();
+            this.Hide();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -80,6 +82,13 @@ namespace CRUD_User
                 button3.Enabled = true;
                 button2.Enabled = true;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddProduct form = new AddProduct();
+            form.Show();
+            this.Hide();
         }
     }
 }
