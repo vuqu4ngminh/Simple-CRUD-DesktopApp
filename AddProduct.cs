@@ -32,7 +32,7 @@ namespace CRUD_User
                 {
                     try
                     {
-                        string apiUrl = "http://localhost:9595/api/v1/product/add";
+                        string apiUrl = "https://mecommerce.live/api/v1/product/add";
                         string userDataJson = $"{{\"name\":\"{name}\",\"description\":\"{description}\",\"price\":\"{Convert.ToInt32(price)}\",\"imageUrl\":\"{imageUrl}\",\"status\":\"{status}\"}}";
                         StringContent content = new StringContent(userDataJson, Encoding.UTF8, "application/json");
                         HttpResponseMessage response = await client.PostAsync(apiUrl, content);

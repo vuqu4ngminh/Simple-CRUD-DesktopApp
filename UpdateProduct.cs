@@ -26,7 +26,7 @@ namespace CRUD_User
         }
         private async void LoadData()
         {
-            string apiUrl = "http://localhost:9595/api/v1/product/" + productId;
+            string apiUrl = "https://mecommerce.live/api/v1/product/" + productId;
 
             using (HttpClient client = new HttpClient())
             {
@@ -65,7 +65,7 @@ namespace CRUD_User
                 {
                     try
                     {
-                        string apiUrl = "http://localhost:9595/api/v1/product/update";
+                        string apiUrl = "https://mecommerce.live/api/v1/product/update";
                         string userDataJson = $"{{\"id\":\"{productId}\",\"name\":\"{name}\",\"description\":\"{description}\",\"price\":\"{Convert.ToInt32(price)}\",\"imageUrl\":\"{imageUrl}\",\"status\":\"{status}\"}}";
                         StringContent content = new StringContent(userDataJson, Encoding.UTF8, "application/json");
                         HttpResponseMessage response = await client.PostAsync(apiUrl, content);

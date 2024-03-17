@@ -25,7 +25,7 @@ namespace CRUD_User
         }
         private async void LoadData()
         {
-            string apiUrl = "http://localhost:9595/api/v1/product/";
+            string apiUrl = "https://mecommerce.live/api/v1/product/";
 
             using (HttpClient client = new HttpClient())
             {

@@ -28,7 +28,7 @@ namespace CRUD_User
         {
             using (HttpClient client = new HttpClient())
             {
-                string apiUrl = "http://localhost:9595/api/v1/product/delete/" + productId;
+                string apiUrl = "https://mecommerce.live/api/v1/product/delete/" + productId;
                 try
                 {
                     HttpResponseMessage response = await client.PostAsync(apiUrl, null);

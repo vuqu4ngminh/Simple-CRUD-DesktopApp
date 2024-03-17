@@ -39,7 +39,7 @@ namespace CRUD_User
                     {
                         try
                         {
-                            string apiUrl = "http://localhost:8181/api/v1/users/add";
+                            string apiUrl = "https://mecommerce.live/api/v1/users/add";
                             string userDataJson = $"{{\"name\":\"{name}\",\"email\":\"{email}\",\"phone\":\"{phone}\",\"address\":\"{address}\",\"password\":\"{Utils.hashPassword(password)}\",\"role\":\"{role}\"}}";
 
                             StringContent content = new StringContent(userDataJson, Encoding.UTF8, "application/json");
